@@ -1,9 +1,12 @@
 #"https://beta.todoist.com/API/v8/projects?token=$token"
-host: https://beta.todoist.com
-root: /API
-version: /v8
-token: f50c6c99ce6a05edd52e71029dd0a320966b07a7
-tasks:
+app:
+  host: https://beta.todoist.com
+  root: /API
+  version: /v8
+
+user:
+  token: ef02f1b870e8d1415a4a376d0db4cf11bdbaef76
+  tasks:
 
 
 
