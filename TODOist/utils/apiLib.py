@@ -28,17 +28,17 @@ from environment import *
 #print (r.text)
 #print (r.json)
 
-def perform_get(endpoint):
-    url = create_url(endpoint)
-    return requests.get(url)
+# def perform_get(endpoint):
+#     url = create_url(endpoint)
+#     return requests.get(url)
 
 def perform_gets(endpoint, id=None):
     url = create_url(endpoint, id)
     return requests.get(url)
 
-def perform_get_by_id(endpoint, id=None):
-    url = create_url(endpoint, id)
-    return requests.get(url)
+# def perform_get_by_id(endpoint, id=None):
+#     url = create_url(endpoint, id)
+#     return requests.get(url)
 
 def perform_post(endpoint, id=None, body=None):
     url = create_url(endpoint, id)
@@ -54,10 +54,10 @@ def perform_delete(endpoint, id):
     return requests.delete(url)
 
 def create_url(endpoint, id=None):
-    url = app_data['host'] + app_data['root'] + app_data['version'] + "/" + endpoint
+    url = app_data['app']['host'] + app_data['app']['root'] + app_data['app']['version'] + "/" + endpoint
     if id != None:
         url += "/" + str(id)
-    url += "?token=" + app_data['token']
+    url += "?token=" + app_data['user']['token']
     print(url)
     return url
 
@@ -65,6 +65,7 @@ def perform_request(method, endpoint, id=None, data=None):
     r = None
     if method.upper() == 'GET':
         r = perform_gets(endpoint, id)
+        print(r.json())
     elif method.upper()=='DELETE':
         perform_delete(endpoint, id)
     elif method=='POST' or method.upper()=='UPDATE':
