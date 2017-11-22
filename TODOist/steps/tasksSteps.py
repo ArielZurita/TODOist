@@ -17,9 +17,9 @@ from utils.apiLib import *
 #      print(result.json())
 
 
-@when(u'I perform "{method}" request to "{endpoint}" endpoint')
-def step_impl(context, method, endpoint):
-    context.result = perform_request(method, endpoint)
+# @when(u'I perform "{method}" request to "{endpoint}" endpoint')
+# def step_impl(context, method, endpoint):
+#     context.result = perform_request(method, endpoint)
 
 @given(u'I use "{endpoint}" endpoint')
 def step_impl(context, endpoint):
@@ -36,12 +36,13 @@ def step_impl(context, method):
 @when(u'I send the request')
 def step_impl(context):
     context.result = perform_request(context.method, context.endpoint, context.id, context.data)
+    print("###############################",context.result ,context.method," ",context.endpoint," ",context.id, context.data )
 
 @then(u'I get status code "{code}"')
 def step_impl(context, code):
     #print(context.result.json())
     expect(str(context.result.status_code)).to_equal(code)
-    print(context.result.status_code)
+    print("The status code is ************************************************** :",context.result.status_code, code)
 
 @given(u'I sent the proper id: "{id}"')
 def step_impl(context, id):
@@ -54,3 +55,9 @@ def step_impl(context, id):
 def step_impl(context):
     #json.loads(data)
     context.data = json.loads(context.text)
+#
+# @then(u'I get empty body')
+# def step_impl(context):
+#     raise NotImplementedError(u'STEP: Then I get empty body')
+
+

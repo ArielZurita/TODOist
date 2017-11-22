@@ -21,7 +21,7 @@ def before_all (context):
 def before_scenario(context, scenario):
     if 'insert_tasks' in scenario.tags:
         #Enviando directamente el json
-        data={"content": "PreTest"}
+        data={"content": "PreTestJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"}
         response=perform_post("tasks", None, data)
         json_response = response.json()
         print(json_response['id'])

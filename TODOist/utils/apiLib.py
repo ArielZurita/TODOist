@@ -61,6 +61,18 @@ def create_url(endpoint, id=None):
     print(url)
     return url
 
+def create_url_close(endpoint, id):
+    url = app_data['app']['host'] + app_data['app']['root'] + app_data['app']['version'] + "/" + endpoint+ "/" + str(id)+"/close"
+
+    url += "?token=" + app_data['user']['token']
+    print(url)
+    return url
+
+def perform_close(endpoint, id):
+    url= create_url_close(endpoint, id)
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",url,"CLose URL",requests.get(url))
+    return requests.post(url)
+
 def perform_request(method, endpoint, id=None, data=None):
     r = None
     if method.upper() == 'GET':
@@ -68,8 +80,10 @@ def perform_request(method, endpoint, id=None, data=None):
         print(r.json())
     elif method.upper()=='DELETE':
         perform_delete(endpoint, id)
-    elif method=='POST' or method.upper()=='UPDATE':
+    elif method=='POST' or method.upper()=='UPDATE' :
         r = perform_post(endpoint, id, data)
+    elif method.upper()=='CLOSE':
+        r=perform_close(endpoint, id)
     else:
         print("Noy implemented method")
 

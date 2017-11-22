@@ -32,22 +32,22 @@ Scenario: GET by id
 #    Then I get status code "200"
 #
 
-  ### Can be uncomment
-@insert_tasks
-  @delete_tasks
-Scenario: UPDATE
-    Given I use "tasks" endpoint
-      And I perform "UPDATE" method
-      And I sent the proper id: "task_id"
-      And I will send the following data:
-      """
-      {"content": "Test12334",
-       "due_string": "tomorrow at 12:00",
-       "due_lang": "en",
-       "priority": 4}
-      """
-    When I send the request
-    Then I get status code "204"
+#  ### Can be uncomment
+#@insert_tasks
+#  @delete_tasks
+#Scenario: UPDATE
+#    Given I use "tasks" endpoint
+#      And I perform "UPDATE" method
+#      And I sent the proper id: "task_id"
+#      And I will send the following data:
+#      """
+#      {"content": "TestJulieta",
+#       "due_string": "tomorrow at 12:00",
+#       "due_lang": "en",
+#       "priority": 4}
+#      """
+#    When I send the request
+#    Then I get status code "204"
 
 
   ##Not implemented yet to compare data. Don't uncomment
@@ -86,4 +86,15 @@ Scenario: UPDATE
 #    When I send the request
 #    Then I get status code "200"
 
-
+#Scenario: Close a task and return an empty body with a HTTP status code 204.
+##The command does exactly what official clients do when you close a task.
+##Regular tasks are completed and moved to history,
+##subtasks are checked (marked as done, but not moved to history),
+##recurring task is moved forward (due date is updated).
+#
+#    Given I use "tasks" endpoint
+#      And I perform "CLOSE" method
+#      And I sent the proper id: "task_id"
+#    When I send the request
+#    Then I get status code "204"
+#      And I get empty body
