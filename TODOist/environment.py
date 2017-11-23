@@ -1,5 +1,6 @@
 import yaml
 from utils.apiLib import *
+from utils.utilGetJson import *
 import json
 
 global app_data
@@ -38,6 +39,11 @@ def before_scenario(context, scenario):
         #Leyendo datos del file2
         id=app_data2['project']['project_id']
         response=perform_gets("projects",id)
+
+    if 'get_all_projects' in scenario.tags:
+        response = perform_gets("projects")
+        data = getJson()
+        print("getting json file >>>>>>>", data)
 
 def after_scenario(context, scenario):
     if 'delete_tasks' in scenario.tags:

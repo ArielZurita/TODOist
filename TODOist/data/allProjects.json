@@ -1,0 +1,51 @@
+[
+    {
+        "id": 2166571545,
+        "name": "Inbox",
+        "order": 0,
+        "indent": 1,
+        "comment_count": 0
+    },
+    {
+        "id": 2166571546,
+        "name": "Personal",
+        "order": 1,
+        "indent": 1,
+        "comment_count": 0
+    },
+    {
+        "id": 2166571547,
+        "name": "Shopping",
+        "order": 2,
+        "indent": 1,
+        "comment_count": 0
+    },
+    {
+        "id": 2166571548,
+        "name": "Work",
+        "order": 3,
+        "indent": 1,
+        "comment_count": 0
+    },
+    {
+        "id": 2166571549,
+        "name": "Errands",
+        "order": 4,
+        "indent": 1,
+        "comment_count": 0
+    },
+    {
+        "id": 2169209144,
+        "name": "project 1",
+        "order": 5,
+        "indent": 1,
+        "comment_count": 0
+    },
+    {
+        "id": 2169209147,
+        "name": "project 2",
+        "order": 6,
+        "indent": 1,
+        "comment_count": 0
+    }
+]
