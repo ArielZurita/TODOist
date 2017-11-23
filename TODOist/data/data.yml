@@ -3,5 +3,12 @@ project:
    project_name_new: {"name":"New Movies to watch again"}
    project_id: 2166590744
 
+
 task1:
   task_name: {"content": "PreTest"}
+
+labels:
+   label_name: {"name": "Lavel 1"}
+   new_project_name : {"name": "New Lavel 1 name"}
+   project_id : 2148941183
+
