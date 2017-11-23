@@ -1,26 +1,32 @@
 Feature: Projects
 
 @get_project
-Scenario: GET project returns status code 200 when entering a valid token and a valid project identifier
+Scenario: GET by id
     Given I use "projects" endpoint
       And I perform "GET" method
-      And I sent the proper id: "5"
+      And I sent the proper id: "2166590740"
     When I send the request
     Then I get status code "200"
 
+
 @update_project
-Scenario: POST by id
+Scenario: UPDATE by id
     Given I use "projects" endpoint
-      And I perform "POST" method
-      And I sent the proper id: "5"
-      And I will send the following data: "{"Movies to watch"}"
+      And I perform "UPDATE" method
+      And I sent the proper id: "2166590740"
+      And I will send the following data:
+      """
+      {"name":"New movies to watch again"}
+      """
     When I send the request
     Then I get status code "204"
+
 
 @delete_project
 Scenario: DELETE by id
     Given I use "projects" endpoint
       And I perform "DELETE" method
-      And I sent the proper id: "5"
+      And I sent the proper id: "2166590744"
     When I send the request
     Then I get status code "204"
+
