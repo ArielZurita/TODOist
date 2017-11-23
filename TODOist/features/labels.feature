@@ -1,6 +1,6 @@
 Feature: Labels won't be available for standard, non-premium accounts like the one we have
   If labels service will be called by an standard's account token then status code 403 (Forbidden) should be returned
-@smoke @labels
+@smoke @labels @create_label
 Scenario: CREATE a label
   Given I use "labels" endpoint
   And I perform "UPDATE" method
@@ -26,16 +26,18 @@ Scenario: GET a label
   When I send the request
   Then I get status code "403"
 
-@smoke @labels
+@smoke @labels @update_label
 Scenario: UPDATE a label
   Given I use "labels" endpoint
     And I perform "UPDATE" method
+    And I sent the proper id: "label_id"
     And I will send the following data:
-      """
-      {"name": "New Name Label"}
-      """
+        """
+        {"name": "New Lavel 1 name"}
+        """
     When I send the request
     Then I get status code "403"
+
 
 @smoke @labels @delete_label
 Scenario: DELETE a label

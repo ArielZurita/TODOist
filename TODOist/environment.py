@@ -37,8 +37,6 @@ def before_scenario(context, scenario):
         response2 = perform_close("tasks", context.id)
         print("%%%%%",json_response1,"CLOSE",response2)
 
-
-
     if 'update_project' in scenario.tags:
         #Leyendo datos del file2
         data=app_data2['project']['project_name_new']
@@ -50,7 +48,7 @@ def before_scenario(context, scenario):
         id=app_data2['project']['project_id']
         response=perform_gets("projects",id)
 
-    if ('get_label' in scenario.tags) or ('delete_label' in scenario.tags):
+    if ('get_label' in scenario.tags) or ('delete_label' in scenario.tags) or ('update_label' in scenario.tags):
         #Before getting or deleting a label I have to create one
         data = app_data2['labels']['label_name']
         response = perform_post("labels", None, data)
@@ -59,11 +57,12 @@ def before_scenario(context, scenario):
         context.id = json_response['id']
 
 
+
 def after_scenario(context, scenario):
     if 'delete_tasks' in scenario.tags:
         print(context.id)
         response=perform_delete("tasks",context.id)
-    if 'get_label' in scenario.tags:
+    if ('create_label'in scenario.tags) or ('get_label' in scenario.tags) or ('update_label' in scenario.tags):
         # After getting the label I have to remove it
         print(context.id)
         response = perform_delete("labels", context.id)
