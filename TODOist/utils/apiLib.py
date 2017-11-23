@@ -54,6 +54,11 @@ def perform_close(endpoint, id):
     print("%%%%",url,"CLose URL",requests.get(url))
     return requests.post(url)
 
+def perform_reopen(endpoint, id):
+    url= create_url_reopen(endpoint, id)
+    print("%%%%",url,"REOPEN URL",requests.get(url))
+    return requests.post(url)
+
 def perform_delete(endpoint, id):
     url = create_url(endpoint, id)
     return requests.delete(url)
@@ -72,6 +77,12 @@ def create_url_close(endpoint, id):
     print(url)
     return url
 
+def create_url_reopen(endpoint, id):
+    url = app_data['app']['host'] + app_data['app']['root'] + app_data['app']['version'] + "/" + endpoint+ "/" + str(id)+"/reopen"
+    url += "?token=" + app_data['user']['token']
+    print("****************************************",url)
+    return url
+
 def perform_request(method, endpoint, id=None, data=None):
     r = None
     if method.upper() == 'GET':
@@ -83,6 +94,8 @@ def perform_request(method, endpoint, id=None, data=None):
         r = perform_post(endpoint, id, data)
     elif method.upper() == 'CLOSE':
         r = perform_close(endpoint, id)
+    elif method.upper() == 'REOPEN':
+        r = perform_reopen(endpoint, id)
     else:
         print("Not implemented method")
 

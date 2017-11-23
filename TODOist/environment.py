@@ -21,6 +21,7 @@ def before_all (context):
     context.method = None
 
 def before_scenario(context, scenario):
+
     if 'insert_tasks' in scenario.tags:
         #Enviando directamente el json
         data={"content": "PreTest"}
@@ -28,6 +29,16 @@ def before_scenario(context, scenario):
         json_response = response.json()
         print(json_response['id'])
         context.id=json_response['id']
+
+    if 'close_tasks' in scenario.tags:
+        data = app_data2['task1']['task_name']
+        response = perform_post("tasks", None, data)
+        json_response1 = response.json()
+        context.id = json_response1['id']
+        response2 = perform_close("tasks", context.id)
+        print("%%%%%",json_response1,"CLOSE",response2)
+
+
 
     if 'update_project' in scenario.tags:
         #Leyendo datos del file2
@@ -40,15 +51,29 @@ def before_scenario(context, scenario):
         id=app_data2['project']['project_id']
         response=perform_gets("projects",id)
 
+
     if 'get_all_projects' in scenario.tags:
         response = perform_gets("projects")
-        data = getJson()
-        print("getting json file >>>>>>>", data)
+        context.data = getJson()
+
+    if ('get_label' in scenario.tags) or ('delete_label' in scenario.tags):
+        #Before getting or deleting a label I have to create one
+        data = app_data2['labels']['label_name']
+        response = perform_post("labels", None, data)
+        json_response = response.json()
+        print(json_response['id'])
+        context.id = json_response['id']
+
+
 
 def after_scenario(context, scenario):
     if 'delete_tasks' in scenario.tags:
         print(context.id)
         response=perform_delete("tasks",context.id)
+    if 'get_label' in scenario.tags:
+        # After getting the label I have to remove it
+        print(context.id)
+        response = perform_delete("labels", context.id)
 
     #Commented in order to avoid delete a project
     # if 'delete_project' in scenario.tags:
