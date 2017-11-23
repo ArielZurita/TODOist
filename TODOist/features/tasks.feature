@@ -1,41 +1,42 @@
-Feature: GET tasks
+Feature: In this feature covers the principals API task actions,GET tasks, GET tasks by ID, Create a new task, UPDATE a created task,
+
   #https://beta.todoist.com/API/v8/tasks?token=$token
 
-  ### Can be uncomment
-#Scenario: GET tasks returns status code 200 when entering a valid token and a valid project identifier
-#    Given I use "tasks" endpoint
-#      And I perform "GET" method
-#    When I send the request
-#    Then I get status code "200"
+  ## Can be uncomment
+Scenario: GET tasks returns status code 200 when entering a valid token and a valid project identifier
+    Given I use "tasks" endpoint
+      And I perform "GET" method
+    When I send the request
+    Then I get status code "200"
 
 @insert_tasks
   @delete_tasks
-Scenario: GET by id
+Scenario: GET by id returns status code 200 when entering a valid token and a valid id task
     Given I use "tasks" endpoint
       And I perform "GET" method
       And I sent the proper id: "task_id"
     When I send the request
     Then I get status code "200"
 
-  ### Can be uncomment
-#Scenario: POST to crate a new task
-#    Given I use "tasks" endpoint
-#      And I perform "POST" method
-#      And I will send the following data:
-#      """
-#      {"content": "Test123",
-#       "due_string": "tomorrow at 12:00",
-#       "due_lang": "en",
-#       "priority": 4}
-#      """
-#    When I send the request
-#    Then I get status code "200"
-#
+  ## Can be uncomment
+Scenario: POST to create a new task
+    Given I use "tasks" endpoint
+      And I perform "POST" method
+      And I will send the following data:
+      """
+      {"content": "Test123",
+       "due_string": "tomorrow at 12:00",
+       "due_lang": "en",
+       "priority": 4}
+      """
+    When I send the request
+    Then I get status code "200"
+
 
   ### Can be uncomment
 @insert_tasks
   @delete_tasks
-Scenario: UPDATE
+Scenario: UPDATE a created task
     Given I use "tasks" endpoint
       And I perform "UPDATE" method
       And I sent the proper id: "task_id"
@@ -86,8 +87,11 @@ Scenario: UPDATE
 #    When I send the request
 #    Then I get status code "200"
 
-    ### Can be see close task in show archived tasks
-@insert_tasks
+
+   ### Can be see close task in show archived tasks
+
+@smoke
+  @insert_tasks
 
 Scenario: CLOSE
     Given I use "tasks" endpoint
@@ -95,3 +99,14 @@ Scenario: CLOSE
       And I sent the proper id: "task_id"
     When I send the request
     Then I get status code "204"
+
+    ### Can be see unclosed task in active tasks
+#@insert_tasks
+#@close_tasks
+#@delete_tasks
+#Scenario: UNCLOSE a Closed task
+#    Given I use "tasks" endpoint
+#      And I perform "UNCLOSE" method
+#      And I sent the proper id: "task_id"
+#    When I send the request
+#    Then I get status code "204"
