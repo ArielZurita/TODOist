@@ -1,4 +1,4 @@
 project:
-   project_name: "Movies to watch"
-   project_name_new: "New Movies to watch"
-   project_id: 5
+   project_name: {"name":"Movies to watch"}
+   project_name_new: {"name":"New Movies to watch again"}
+   project_id: 2166590744
