@@ -33,7 +33,7 @@ def before_scenario(context, scenario):
         json_response1 = response.json()
         context.id = json_response1['id']
         response2 = perform_close("tasks", context.id)
-        print("%%%%%",json_response1,"CLOSE",response2)
+
 
     if ('update_project' in scenario.tags) or ('get_project' in scenario.tags) or ('delete_project' in scenario.tags):
         #Before getting a Project I have to create one to be dinamic
@@ -42,7 +42,6 @@ def before_scenario(context, scenario):
         data=app_data2['project']['project_name_new']
         response=perform_post("projects",None,data)
         json_response = response.json()
-        print(json_response['id'])
         print("_____________________________________________________________________________________")
         #Getting the id of new Project
         context.id=json_response['id']
@@ -56,21 +55,17 @@ def before_scenario(context, scenario):
         data = app_data2['labels']['label_name']
         response = perform_post("labels", None, data)
         json_response = response.json()
-        print(json_response['id'])
         context.id = json_response['id']
 
 def after_scenario(context, scenario):
     if 'delete_tasks' in scenario.tags:
-        print(context.id)
         response=perform_delete("tasks",context.id)
 
     if 'get_label' in scenario.tags:
         # After getting the label I have to remove it
-        print(context.id)
         response = perform_delete("labels", context.id)
 
     if 'delete_project' in scenario.tags:
         # After getting, updating the Project I have to remove it
-        print(context.id)
         response=perform_delete("projects",context.id)
 

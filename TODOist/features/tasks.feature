@@ -18,6 +18,7 @@ Scenario: GET task by id and returns status code 200 when entering a valid token
 
 @insert_tasks
 @delete_tasks
+  @functional
 Scenario: GET task by id and compare data
     Given I use "tasks" endpoint
       And I perform "GET" method
@@ -26,6 +27,7 @@ Scenario: GET task by id and compare data
     Then I get status code "200"
       And I compare data
 
+  @functional
 Scenario: POST to create a new task
     Given I use "tasks" endpoint
       And I perform "POST" method

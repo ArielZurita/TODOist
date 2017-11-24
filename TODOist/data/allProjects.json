@@ -1,50 +1,43 @@
 [
     {
-        "id": 2166571545,
+        "id": 2169264263,
         "name": "Inbox",
         "order": 0,
         "indent": 1,
         "comment_count": 0
     },
     {
-        "id": 2166571546,
+        "id": 2169264264,
         "name": "Personal",
         "order": 1,
         "indent": 1,
         "comment_count": 0
     },
     {
-        "id": 2166571547,
+        "id": 2169264265,
         "name": "Shopping",
         "order": 2,
         "indent": 1,
         "comment_count": 0
     },
     {
-        "id": 2166571548,
+        "id": 2169264266,
         "name": "Work",
         "order": 3,
         "indent": 1,
         "comment_count": 0
     },
     {
-        "id": 2166571549,
+        "id": 2169264267,
         "name": "Errands",
         "order": 4,
         "indent": 1,
         "comment_count": 0
     },
     {
-        "id": 2169209144,
-        "name": "project 1",
+        "id": 2169264268,
+        "name": "Movies to watch",
         "order": 5,
-        "indent": 1,
-        "comment_count": 0
-    },
-    {
-        "id": 2169209147,
-        "name": "project 2",
-        "order": 6,
         "indent": 1,
         "comment_count": 0
     }
