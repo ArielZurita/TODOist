@@ -14,8 +14,6 @@ def before_all (context):
     context.version = app_data['app']['version']
     context.token = app_data['user']['token']
     context.url=context.host+context.root+context.version
-    ### Moved here otherwise being in steps definitions
-    ### it will override the data sent by hooks
     context.id = None
     context.data = None
     context.method = None
@@ -23,9 +21,8 @@ def before_all (context):
 def before_scenario(context, scenario):
 
     if 'insert_tasks' in scenario.tags:
-        #Enviando directamente el json
-        data={"content": "PreTest"}
-        response=perform_post("tasks", None, data)
+        context.data = app_data2['task1']['task_name']
+        response=perform_post("tasks", None, context.data)
         json_response = response.json()
         print(json_response['id'])
         context.id=json_response['id']
@@ -50,7 +47,6 @@ def before_scenario(context, scenario):
         #Leyendo datos del file2
         id=app_data2['project']['project_id']
         response=perform_gets("projects",id)
-
 
     if 'get_all_projects' in scenario.tags:
         response = perform_gets("projects")
