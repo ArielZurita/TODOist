@@ -4,7 +4,7 @@ Feature: Projects
 Scenario: GET by id
     Given I use "projects" endpoint
       And I perform "GET" method
-      And I sent the proper id: "2166590740"
+      And I sent the proper id: "project_id"
     When I send the request
     Then I get status code "200"
 
@@ -13,7 +13,7 @@ Scenario: GET by id
 Scenario: UPDATE by id
     Given I use "projects" endpoint
       And I perform "UPDATE" method
-      And I sent the proper id: "2166590740"
+      And I sent the proper id: "project_id"
       And I will send the following data:
       """
       {"name":"New movies to watch again"}
@@ -26,7 +26,7 @@ Scenario: UPDATE by id
 Scenario: DELETE by id
     Given I use "projects" endpoint
       And I perform "DELETE" method
-      And I sent the proper id: "2166590744"
+      And I sent the proper id: "project_id"
     When I send the request
     Then I get status code "204"
 

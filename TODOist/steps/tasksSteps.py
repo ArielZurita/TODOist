@@ -27,7 +27,7 @@ def step_impl(context, code):
 def step_impl(context, id):
     print(context.id)
     print(id)
-    if id not in ("task_id", "label_id"):
+    if id not in ("task_id", "label_id", "project_id"):
         context.id = id
 
 @given(u'I will send the following data')

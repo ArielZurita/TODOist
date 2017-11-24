@@ -35,18 +35,17 @@ def before_scenario(context, scenario):
         response2 = perform_close("tasks", context.id)
         print("%%%%%",json_response1,"CLOSE",response2)
 
-
-
-    if 'update_project' in scenario.tags:
-        #Leyendo datos del file2
+    if ('update_project' in scenario.tags) or ('get_project' in scenario.tags) or ('delete_project' in scenario.tags):
+        #Before getting a Project I have to create one to be dinamic
+        #Creating a new Project
+        #Gathering data from file2
         data=app_data2['project']['project_name_new']
-        id=app_data2['project']['project_id']
-        response=perform_post("projects",id,data)
-
-    if 'get_project' in scenario.tags:
-        #Leyendo datos del file2
-        id=app_data2['project']['project_id']
-        response=perform_gets("projects",id)
+        response=perform_post("projects",None,data)
+        json_response = response.json()
+        print(json_response['id'])
+        print("_____________________________________________________________________________________")
+        #Getting the id of new Project
+        context.id=json_response['id']
 
     if 'get_all_projects' in scenario.tags:
         response = perform_gets("projects")
@@ -60,19 +59,18 @@ def before_scenario(context, scenario):
         print(json_response['id'])
         context.id = json_response['id']
 
-
-
 def after_scenario(context, scenario):
     if 'delete_tasks' in scenario.tags:
         print(context.id)
         response=perform_delete("tasks",context.id)
+
     if 'get_label' in scenario.tags:
         # After getting the label I have to remove it
         print(context.id)
         response = perform_delete("labels", context.id)
 
-    #Commented in order to avoid delete a project
-    # if 'delete_project' in scenario.tags:
-    #     print(context.id)
-    #     response=perform_delete("projects",context.id)
+    if 'delete_project' in scenario.tags:
+        # After getting, updating the Project I have to remove it
+        print(context.id)
+        response=perform_delete("projects",context.id)
 
