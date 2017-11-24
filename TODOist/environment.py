@@ -50,18 +50,19 @@ def before_scenario(context, scenario):
         response = perform_gets("projects")
         context.data = getJson()
 
-    if ('get_label' in scenario.tags) or ('delete_label' in scenario.tags):
+    if ('get_label' in scenario.tags) or ('delete_label' in scenario.tags) or ('update_label' in scenario.tags):
         #Before getting or deleting a label I have to create one
         data = app_data2['labels']['label_name']
         response = perform_post("labels", None, data)
         json_response = response.json()
+        print(json_response['id'])
         context.id = json_response['id']
 
 def after_scenario(context, scenario):
     if 'delete_tasks' in scenario.tags:
         response=perform_delete("tasks",context.id)
 
-    if 'get_label' in scenario.tags:
+    if ('create_label'in scenario.tags) or ('get_label' in scenario.tags) or ('update_label' in scenario.tags):
         # After getting the label I have to remove it
         response = perform_delete("labels", context.id)
 
